@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
-    // define field fro entity manager
+    // define field for entity manager
     private final EntityManager entityManager;
 
     // inject entity manager using constructor injection
