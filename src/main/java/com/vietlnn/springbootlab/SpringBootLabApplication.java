@@ -27,8 +27,15 @@ public class SpringBootLabApplication {
 //			readStudent(studentDAO);
 //			queryForStudents(studentDAO);
 //			readStudentByLastName(studentDAO);
-			updateStudent(studentDAO);
+//			updateStudent(studentDAO);
+//			deleteStudentById(studentDAO);
 		};
+	}
+
+	private void deleteStudentById(StudentDAO studentDAO) {
+		int studentIdToBeDeleted = 1;
+		System.out.printf("Deleting student with id '%d'...%n", studentIdToBeDeleted);
+		studentDAO.delete(studentIdToBeDeleted);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
