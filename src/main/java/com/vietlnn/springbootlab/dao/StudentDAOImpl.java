@@ -1,12 +1,16 @@
 package com.vietlnn.springbootlab.dao;
 
 import com.vietlnn.springbootlab.entity.Student;
+import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //@Repository specialized for repositories -> support component scanning & translate JDBC exceptions
@@ -15,6 +19,10 @@ public class StudentDAOImpl implements StudentDAO {
 
     // define field for entity manager
     private final EntityManager entityManager;
+
+    private String FIRST_NAME = "firstName";
+    private String LAST_NAME = "lastName";
+    private String EMAIL = "email";
 
     // inject entity manager using constructor injection
     @Autowired
@@ -54,6 +62,26 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
+    public List<Student> identifyStudents(StudentSearchCriteria searchCriteria)
+    {
+        if(searchCriteria == null){
+            System.out.println("SearchCriteria is empty!");
+            return null;
+        }
+
+        // build criteria
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> studentRoot = criteriaQuery.from(Student.class);
+
+        // build predicates based on searchCriteria
+        List<Predicate> predicates = buildPredicates(criteriaBuilder, studentRoot, searchCriteria);
+
+        criteriaQuery.select(studentRoot).where(predicates.toArray(new Predicate[0]));
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    @Override
     @Transactional
     public void update(Student student) {
         entityManager.merge(student);
@@ -70,5 +98,36 @@ public class StudentDAOImpl implements StudentDAO {
 
         // delete found student
         entityManager.remove(foundStudent);
+    }
+
+    @Override
+    @Transactional
+    public void deleteBySearchCriteria(StudentSearchCriteria searchCriteria) {
+        // build criteria
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaDelete<Student> criteriaDelete = criteriaBuilder.createCriteriaDelete(Student.class);
+        Root<Student> studentRoot = criteriaDelete.from(Student.class);
+
+        // create predicate
+        List<Predicate> predicates = buildPredicates(criteriaBuilder, studentRoot, searchCriteria);
+
+        criteriaDelete.where(predicates.toArray(new Predicate[0]));
+        entityManager.createQuery(criteriaDelete).executeUpdate();
+        entityManager.clear();  // clear caching after bulk update/delete (executeUpdate())
+    }
+
+    private List<Predicate> buildPredicates(CriteriaBuilder criteriaBuilder, Root<Student> studentRoot, StudentSearchCriteria searchCriteria){
+        List<Predicate> predicates = new ArrayList<>();
+
+        if(StringUtils.isNotBlank(searchCriteria.getFirstName())){
+            predicates.add(criteriaBuilder.equal(studentRoot.get(FIRST_NAME), searchCriteria.getFirstName()));
+        }
+        if(StringUtils.isNotBlank(searchCriteria.getLastName())){
+            predicates.add(criteriaBuilder.equal(studentRoot.get(LAST_NAME), searchCriteria.getLastName()));
+        }
+        if(StringUtils.isNotBlank(searchCriteria.getEmail())){
+            predicates.add(criteriaBuilder.equal(studentRoot.get(EMAIL), searchCriteria.getEmail()));
+        }
+        return predicates;
     }
 }

@@ -2,6 +2,7 @@ package com.vietlnn.springbootlab;
 
 import com.vietlnn.springbootlab.dao.StudentDAO;
 import com.vietlnn.springbootlab.entity.Student;
+import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +30,25 @@ public class SpringBootLabApplication {
 //			readStudentByLastName(studentDAO);
 //			updateStudent(studentDAO);
 //			deleteStudentById(studentDAO);
+//			identifyStudents(studentDAO);
+			deleteStudentBySearchCriteria(studentDAO);
 		};
+	}
+
+	private void deleteStudentBySearchCriteria(StudentDAO studentDAO) {
+		StudentSearchCriteria searchCriteria = new StudentSearchCriteria();
+		searchCriteria.setFirstName("Marcus1");
+
+		System.out.println("Deleting Student with SearchCriteria: " + searchCriteria);
+		studentDAO.deleteBySearchCriteria(searchCriteria);
+	}
+
+	private void identifyStudents(StudentDAO studentDAO) {
+		StudentSearchCriteria searchCriteria = new StudentSearchCriteria();
+		searchCriteria.setLastName("Aurelius");
+		List<Student> foundStudents = studentDAO.identifyStudents(searchCriteria);
+		System.out.println("Found Students size: " + foundStudents.size());
+		System.out.println("Found Students: " + foundStudents);
 	}
 
 	private void deleteStudentById(StudentDAO studentDAO) {

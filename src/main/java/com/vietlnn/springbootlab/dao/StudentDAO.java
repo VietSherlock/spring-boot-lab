@@ -1,6 +1,7 @@
 package com.vietlnn.springbootlab.dao;
 
 import com.vietlnn.springbootlab.entity.Student;
+import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface StudentDAO {
     public Student findById(Integer id);
     public List<Student> findAll();
     public List<Student> findByLastName(String lastName);
+    public List<Student> identifyStudents(StudentSearchCriteria searchCriteria);
     public void update(Student student);
     public void delete(Integer id);
+    public void deleteBySearchCriteria(StudentSearchCriteria searchCriteria);
 }
