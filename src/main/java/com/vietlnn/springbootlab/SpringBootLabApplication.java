@@ -23,8 +23,55 @@ public class SpringBootLabApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			createStudent(studentDAO);
-			createStudents(studentDAO);
+//			createStudents(studentDAO);
+//			readStudent(studentDAO);
+//			queryForStudents(studentDAO);
+//			readStudentByLastName(studentDAO);
+			updateStudent(studentDAO);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		// retrieve student by ID
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student foundStudent = studentDAO.findById(studentId);
+		System.out.println("Updating student...");
+
+		// change first name to "Scooby"
+		foundStudent.setFirstName("Scooby");
+		studentDAO.update(foundStudent);
+
+		// display updated student
+		System.out.println("Updated student: " + foundStudent);
+	}
+
+	private void readStudentByLastName(StudentDAO studentDAO) {
+		// retrieve students by lastName
+		List<Student> students = studentDAO.findByLastName("Aurelius");
+
+		// display list of students
+		students.forEach(System.out::println);
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		// get list of students
+		List<Student> students = studentDAO.findAll();
+
+		// display list of students
+		students.forEach(System.out::println);
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		// create student object
+		Student student = new Student("Viet", "Le Nguyen Ngoc", "vietlnn@gmail.com");
+
+		// save student object
+		createStudent(studentDAO, student);
+
+		// display student saved by its primary key
+		Student foundStudent = studentDAO.findById(student.getId());
+		System.out.println("Found student: " + foundStudent);
 	}
 
 	private void createStudents(StudentDAO studentDAO) {
