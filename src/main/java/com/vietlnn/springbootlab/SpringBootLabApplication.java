@@ -24,15 +24,22 @@ public class SpringBootLabApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			createStudent(studentDAO);
-//			createStudents(studentDAO);
+			createStudents(studentDAO);
 //			readStudent(studentDAO);
 //			queryForStudents(studentDAO);
 //			readStudentByLastName(studentDAO);
 //			updateStudent(studentDAO);
 //			deleteStudentById(studentDAO);
 //			identifyStudents(studentDAO);
-			deleteStudentBySearchCriteria(studentDAO);
+//			deleteStudentBySearchCriteria(studentDAO);
+//			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students...");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted student number: " + numRowsDeleted);
 	}
 
 	private void deleteStudentBySearchCriteria(StudentDAO studentDAO) {

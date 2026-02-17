@@ -116,6 +116,12 @@ public class StudentDAOImpl implements StudentDAO {
         entityManager.clear();  // clear caching after bulk update/delete (executeUpdate())
     }
 
+    @Override
+    @Transactional
+    public int deleteAll() {
+        return entityManager.createQuery("delete from Student").executeUpdate();
+    }
+
     private List<Predicate> buildPredicates(CriteriaBuilder criteriaBuilder, Root<Student> studentRoot, StudentSearchCriteria searchCriteria){
         List<Predicate> predicates = new ArrayList<>();
 

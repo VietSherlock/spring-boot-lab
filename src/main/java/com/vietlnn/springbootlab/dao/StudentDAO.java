@@ -18,4 +18,5 @@ public interface StudentDAO {
     public void update(Student student);
     public void delete(Integer id);
     public void deleteBySearchCriteria(StudentSearchCriteria searchCriteria);
+    public int deleteAll();
 }
