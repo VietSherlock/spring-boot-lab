@@ -24,7 +24,7 @@ public class SpringBootLabApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			createStudent(studentDAO);
-			createStudents(studentDAO);
+//			createStudents(studentDAO);
 //			readStudent(studentDAO);
 //			queryForStudents(studentDAO);
 //			readStudentByLastName(studentDAO);
