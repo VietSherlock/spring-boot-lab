@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+set -e  # stop the script immediately -> blocks the commit when sth fails
+
+# use Maven Wrapper so no per-machine Maven install require
+# -q runs Maven in "quiet" mode (less console output)
+# -DskipTests skips tests for faster run
+# spotless:apply runs spotless and rewrites files to match config format rules
+echo ">>> Running Spotless formatter..."
+./mvnw -q -DskipTests spotless:apply
+
+# stage any formatter changes so the commit is clean
+git add -A
+echo ">>> Format check passed."
