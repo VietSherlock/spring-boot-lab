@@ -1,6 +1,5 @@
 package com.vietlnn.springbootlab.demo;
 
-
 import java.io.Serializable;
 
 public class DemoClassWithoutSerializable implements Serializable {
@@ -19,4 +18,3 @@ public class DemoClassWithoutSerializable implements Serializable {
     this.name = name;
   }
 }
-

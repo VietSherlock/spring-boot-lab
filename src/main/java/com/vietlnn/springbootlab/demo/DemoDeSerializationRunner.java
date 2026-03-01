@@ -10,8 +10,8 @@ public class DemoDeSerializationRunner {
 
   public static void main(String[] args) throws IOException, ClassNotFoundException {
     String fileName = "fileSerialization.txt";
-    DemoDeSerialization demoDeSerialization = new DemoDeSerialization("DeSerialization", 10, 20, 30,
-        40);
+    DemoDeSerialization demoDeSerialization =
+        new DemoDeSerialization("DeSerialization", 10, 20, 30, 40);
 
     // serialize object into a file -> convert object to ByteStream -> write into the file
     FileOutputStream file = new FileOutputStream(fileName);

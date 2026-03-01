@@ -12,6 +12,7 @@ public class CricketCoach implements Coach {
 
   @Value("${coach.name}")
   private String coachName;
+
   @Value("${team.name}")
   private String teamName;
 
@@ -21,7 +22,7 @@ public class CricketCoach implements Coach {
 
   @Override
   public String getDailyWorkout() {
-    return String.format("HockeyCoach - %s: %s needs to practice 15 minutes every day!", coachName,
-        teamName);
+    return String.format(
+        "HockeyCoach - %s: %s needs to practice 15 minutes every day!", coachName, teamName);
   }
 }

@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Lazy //Bean is only initialized if needed for DI
+@Lazy // Bean is only initialized if needed for DI
 @Component
-//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // new instance for each injection with scope prototype
+// @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // new instance for each injection with scope
+// prototype
 public class HockeyCoach implements Coach {
 
   @Value("${coach.name}")
   private String coachName;
+
   @Value("${team.name}")
   private String teamName;
 
@@ -26,7 +28,7 @@ public class HockeyCoach implements Coach {
     System.out.println("In setUpStartup(): " + getClass().getSimpleName());
   }
 
-  //define custom destroy method -> run after container shutdown
+  // define custom destroy method -> run after container shutdown
   @PreDestroy
   public void cleanUpBeforeDestroy() {
     System.out.println("In cleanUpBeforeDestroy(): " + getClass().getSimpleName());
@@ -34,7 +36,7 @@ public class HockeyCoach implements Coach {
 
   @Override
   public String getDailyWorkout() {
-    return String.format("HockeyCoach - %s: %s needs to practice 15 minutes every day!", coachName,
-        teamName);
+    return String.format(
+        "HockeyCoach - %s: %s needs to practice 15 minutes every day!", coachName, teamName);
   }
 }

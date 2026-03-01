@@ -27,13 +27,12 @@ public class Student {
   @Column(name = "email")
   private String email;
 
-  //error -> if no corresponding column name 'test'
-  @Transient //exclude field that has no corresponding column in db
+  // error -> if no corresponding column name 'test'
+  @Transient // exclude field that has no corresponding column in db
   private String test;
 
   // define constructors
-  public Student() {
-  }
+  public Student() {}
 
   public Student(String firstName, String lastName, String email) {
     this.firstName = firstName;
@@ -91,12 +90,21 @@ public class Student {
 
   @Override
   public String toString() {
-    return "Student{" +
-        "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        ", test='" + test + '\'' +
-        '}';
+    return "Student{"
+        + "id="
+        + id
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", test='"
+        + test
+        + '\''
+        + '}';
   }
 }

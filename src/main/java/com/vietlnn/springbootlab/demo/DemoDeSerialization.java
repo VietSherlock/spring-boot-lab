@@ -5,16 +5,16 @@ import java.io.Serializable;
 
 public class DemoDeSerialization implements Serializable {
 
-  @Serial
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
   private static int b;
   private final int c;
-  private transient final int d;
+  private final transient int d;
   private String demoName;
   private transient int a;
-  // instance member of serialized class must implement Serializable either to avoid error during serialization process
-  private DemoClassWithoutSerializable classWithoutSerializable = new DemoClassWithoutSerializable(
-      "FirstName");
+  // instance member of serialized class must implement Serializable either to avoid error during
+  // serialization process
+  private DemoClassWithoutSerializable classWithoutSerializable =
+      new DemoClassWithoutSerializable("FirstName");
 
   public DemoDeSerialization(String demoName, int a, int b, int c, int d) {
     this.demoName = demoName;
@@ -58,12 +58,18 @@ public class DemoDeSerialization implements Serializable {
 
   @Override
   public String toString() {
-    return "DemoDeSerialization{" +
-        "demoName='" + demoName + '\'' +
-        ", a=" + a +
-        ", c=" + c +
-        ", d=" + d +
-        ", classWithoutSerializable=" + classWithoutSerializable +
-        '}';
+    return "DemoDeSerialization{"
+        + "demoName='"
+        + demoName
+        + '\''
+        + ", a="
+        + a
+        + ", c="
+        + c
+        + ", d="
+        + d
+        + ", classWithoutSerializable="
+        + classWithoutSerializable
+        + '}';
   }
 }

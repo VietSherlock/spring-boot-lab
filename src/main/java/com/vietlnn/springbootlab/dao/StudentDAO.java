@@ -4,9 +4,10 @@ import com.vietlnn.springbootlab.entity.Student;
 import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
 import java.util.List;
 
-//DAO is a design pattern that provides an abstract interface for accessing data from a database (or any persistence mechanism)
-//Encapsulate CRUD operation for a specific entity
-//Separate business logic from persistence details
+// DAO is a design pattern that provides an abstract interface for accessing data from a database
+// (or any persistence mechanism)
+// Encapsulate CRUD operation for a specific entity
+// Separate business logic from persistence details
 public interface StudentDAO {
 
   public void save(Student student);

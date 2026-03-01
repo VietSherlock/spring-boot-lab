@@ -16,7 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-//@Repository specialized for repositories -> support component scanning & translate JDBC exceptions
+// @Repository specialized for repositories -> support component scanning & translate JDBC
+// exceptions
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
@@ -35,7 +36,7 @@ public class StudentDAOImpl implements StudentDAO {
 
   // implement save method
   @Override
-  @Transactional //automatically begin and end a transaction -> no need for select statement/query
+  @Transactional // automatically begin and end a transaction -> no need for select statement/query
   public void save(Student student) {
     entityManager.persist(student);
   }
@@ -47,18 +48,19 @@ public class StudentDAOImpl implements StudentDAO {
 
   @Override
   public List<Student> findAll() {
-    //Student is name of JPA Entity -> not table name
-    TypedQuery<Student> query = entityManager.createQuery("from Student order by lastName",
-        Student.class);
+    // Student is name of JPA Entity -> not table name
+    TypedQuery<Student> query =
+        entityManager.createQuery("from Student order by lastName", Student.class);
     return query.getResultList();
   }
 
   @Override
   public List<Student> findByLastName(String lastName) {
     // create query
-    TypedQuery<Student> query = entityManager.createQuery(
-        "from Student where lastName = :lastNameValue",
-        Student.class); //:lastNameValue as placeholder
+    TypedQuery<Student> query =
+        entityManager.createQuery(
+            "from Student where lastName = :lastNameValue",
+            Student.class); // :lastNameValue as placeholder
 
     // set query parameters
     query.setParameter("lastNameValue", lastName);
@@ -118,7 +120,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     criteriaDelete.where(predicates.toArray(new Predicate[0]));
     entityManager.createQuery(criteriaDelete).executeUpdate();
-    entityManager.clear();  // clear caching after bulk update/delete (executeUpdate())
+    entityManager.clear(); // clear caching after bulk update/delete (executeUpdate())
   }
 
   @Override
@@ -127,8 +129,10 @@ public class StudentDAOImpl implements StudentDAO {
     return entityManager.createQuery("delete from Student").executeUpdate();
   }
 
-  private List<Predicate> buildPredicates(CriteriaBuilder criteriaBuilder,
-      Root<Student> studentRoot, StudentSearchCriteria searchCriteria) {
+  private List<Predicate> buildPredicates(
+      CriteriaBuilder criteriaBuilder,
+      Root<Student> studentRoot,
+      StudentSearchCriteria searchCriteria) {
     List<Predicate> predicates = new ArrayList<>();
 
     if (StringUtils.isNotBlank(searchCriteria.getFirstName())) {

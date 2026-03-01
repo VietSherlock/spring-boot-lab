@@ -1,6 +1,6 @@
 package com.vietlnn.springbootlab.common;
 
-//not registered as a bean by annotation here (@Component) -> manually register in separated class
+// not registered as a bean by annotation here (@Component) -> manually register in separated class
 public class SwimCoach implements Coach {
 
   public SwimCoach() {

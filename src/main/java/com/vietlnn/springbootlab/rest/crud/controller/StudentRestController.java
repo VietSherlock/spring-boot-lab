@@ -14,8 +14,9 @@ public class StudentRestController {
   // return a list of students
   @GetMapping("/students")
   public List<Student> getStudents() {
-    //Spring uses Jackson to automatically serialize Java POJOs to JSON and deserialize JSON back to POJOs
-    return Arrays.asList(new Student("Cristiano", "Ronaldo"),
-        new Student("Viet", "Le Nguyen Ngoc"));
+    // Spring uses Jackson to automatically serialize Java POJOs to JSON and deserialize JSON back
+    // to POJOs
+    return Arrays.asList(
+        new Student("Cristiano", "Ronaldo"), new Student("Viet", "Le Nguyen Ngoc"));
   }
 }
