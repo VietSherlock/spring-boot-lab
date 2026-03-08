@@ -1,7 +1,7 @@
-package com.vietlnn.springbootlab.config;
+package com.vietlnn.springbootlab.spring.core.config;
 
-import com.vietlnn.springbootlab.common.Coach;
-import com.vietlnn.springbootlab.common.SwimCoach;
+import com.vietlnn.springbootlab.spring.core.common.Coach;
+import com.vietlnn.springbootlab.spring.core.common.SwimCoach;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

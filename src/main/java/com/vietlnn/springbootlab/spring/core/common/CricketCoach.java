@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.common;
+package com.vietlnn.springbootlab.spring.core.common;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;

@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.common;
+package com.vietlnn.springbootlab.spring.core.common;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

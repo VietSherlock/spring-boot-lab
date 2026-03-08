@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.demo;
+package com.vietlnn.springbootlab.spring.core.serialization;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

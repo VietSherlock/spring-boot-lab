@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.entity;
+package com.vietlnn.springbootlab.hibernate.crud.entity;
 
 public class StudentSearchCriteria {
 

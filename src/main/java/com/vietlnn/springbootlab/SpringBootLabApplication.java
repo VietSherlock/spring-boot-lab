@@ -1,8 +1,8 @@
 package com.vietlnn.springbootlab;
 
-import com.vietlnn.springbootlab.dao.StudentDAO;
-import com.vietlnn.springbootlab.entity.Student;
-import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
+import com.vietlnn.springbootlab.hibernate.crud.dao.StudentDAO;
+import com.vietlnn.springbootlab.hibernate.crud.entity.Student;
+import com.vietlnn.springbootlab.hibernate.crud.entity.StudentSearchCriteria;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class SpringBootLabApplication {
     return runner -> {
       //			createStudent(studentDAO);
       //			createStudents(studentDAO);
-      //			readStudent(studentDAO);
+      readStudent(studentDAO);
       //			queryForStudents(studentDAO);
       //			readStudentByLastName(studentDAO);
       //			updateStudent(studentDAO);

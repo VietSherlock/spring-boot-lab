@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.entity;
+package com.vietlnn.springbootlab.hibernate.crud.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

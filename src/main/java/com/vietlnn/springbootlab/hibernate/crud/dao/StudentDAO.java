@@ -1,7 +1,7 @@
-package com.vietlnn.springbootlab.dao;
+package com.vietlnn.springbootlab.hibernate.crud.dao;
 
-import com.vietlnn.springbootlab.entity.Student;
-import com.vietlnn.springbootlab.entity.StudentSearchCriteria;
+import com.vietlnn.springbootlab.hibernate.crud.entity.Student;
+import com.vietlnn.springbootlab.hibernate.crud.entity.StudentSearchCriteria;
 import java.util.List;
 
 // DAO is a design pattern that provides an abstract interface for accessing data from a database
