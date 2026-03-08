@@ -1,13 +1,13 @@
-package com.vietlnn.springbootlab.rest.crud.dto;
+package com.vietlnn.springbootlab.rest.crud.pojo;
 
-public class StudentErrorResponse {
+public class ErrorResponse {
   private int status;
   private String message;
   private long timeStamp;
 
-  public StudentErrorResponse() {}
+  public ErrorResponse() {}
 
-  public StudentErrorResponse(int status, String message, long timeStamp) {
+  public ErrorResponse(int status, String message, long timeStamp) {
     this.status = status;
     this.message = message;
     this.timeStamp = timeStamp;

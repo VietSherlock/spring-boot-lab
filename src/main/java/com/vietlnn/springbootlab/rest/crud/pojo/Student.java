@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.rest.crud.dto;
+package com.vietlnn.springbootlab.rest.crud.pojo;
 
 // POJO class or DTO (Data Transfer Object)
 public class Student {

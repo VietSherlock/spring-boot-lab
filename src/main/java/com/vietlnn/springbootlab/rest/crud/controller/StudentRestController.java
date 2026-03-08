@@ -1,13 +1,10 @@
 package com.vietlnn.springbootlab.rest.crud.controller;
 
-import com.vietlnn.springbootlab.rest.crud.dto.Student;
-import com.vietlnn.springbootlab.rest.crud.dto.StudentErrorResponse;
-import com.vietlnn.springbootlab.rest.crud.exception.StudentNotFoundException;
+import com.vietlnn.springbootlab.rest.crud.exception.NotFoundException;
+import com.vietlnn.springbootlab.rest.crud.pojo.Student;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,18 +26,9 @@ public class StudentRestController {
   @GetMapping("/students/{studentId}")
   public Student getStudent(@PathVariable int studentId) {
     if (studentId >= students.size() || studentId < 0) {
-      throw new StudentNotFoundException("Student id not found - " + studentId);
+      throw new NotFoundException("Student id not found - " + studentId);
     }
     return students.get(studentId);
-  }
-
-  @ExceptionHandler
-  public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exception) {
-    StudentErrorResponse error = new StudentErrorResponse();
-    error.setStatus(HttpStatus.NOT_FOUND.value());
-    error.setMessage(exception.getMessage());
-    error.setTimeStamp(System.currentTimeMillis());
-    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
   }
 
   // use init method to initialize student data -> store in memory
