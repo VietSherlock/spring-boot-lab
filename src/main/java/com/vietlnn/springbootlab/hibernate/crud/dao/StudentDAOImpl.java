@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-// @Repository specialized for repositories -> support component scanning & translate JDBC
-// exceptions
+// @Repository specialized for repositories
+// -> support component scanning & translate JDBC exceptions
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 

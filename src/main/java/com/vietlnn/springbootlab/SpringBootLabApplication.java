@@ -24,7 +24,7 @@ public class SpringBootLabApplication {
     return runner -> {
       //			createStudent(studentDAO);
       //			createStudents(studentDAO);
-      readStudent(studentDAO);
+      //      readStudent(studentDAO);
       //			queryForStudents(studentDAO);
       //			readStudentByLastName(studentDAO);
       //			updateStudent(studentDAO);
