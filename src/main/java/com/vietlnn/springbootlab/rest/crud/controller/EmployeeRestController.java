@@ -31,6 +31,6 @@ public class EmployeeRestController {
 
   @GetMapping("/employees/{id}")
   public Employee getEmployeeById(@PathVariable Integer id) {
-    return employeeService.findById(id);
+    return employeeService.findById(id).orElse(null);
   }
 }

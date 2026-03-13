@@ -1,21 +1,34 @@
 package com.vietlnn.springbootlab.rest.crud.dao;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
-public interface Dao<T> {
+// generic interface with all common CRUD operations
 
-  // find all records
-  List<T> findAll();
+/**
+ * Base DAO interface includes CRUD operation for entities
+ *
+ * @param <T> entity type
+ * @param <I> ID type
+ */
+public interface Dao<T, I extends Serializable> {
 
   // find by entity's id
-  T findById(Integer id);
-  //
-  //  // create an entity
-  //  void save(T t);
-  //
-  //  // update an existing entity
-  //  void update(T t);
-  //
-  //  // delete an entity
-  //  void delete(Integer id);
+  Optional<T> findById(I id);
+
+  // find all entities
+  List<T> findAll();
+
+  // create an entity
+  T save(T entity);
+
+  // update an existing entity
+  T update(T entity);
+
+  // delete an entity
+  void delete(T entity);
+
+  // delete entity by its ID
+  void deleteById(I id);
 }

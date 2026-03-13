@@ -3,16 +3,17 @@ package com.vietlnn.springbootlab.rest.crud.service;
 import com.vietlnn.springbootlab.rest.crud.dao.Dao;
 import com.vietlnn.springbootlab.rest.crud.entity.Employee;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-  private final Dao<Employee> employeeDao;
+  private final Dao<Employee, Integer> employeeDao;
 
   @Autowired
-  public EmployeeServiceImpl(Dao<Employee> employeeDao) {
+  public EmployeeServiceImpl(Dao<Employee, Integer> employeeDao) {
     this.employeeDao = employeeDao;
   }
 
@@ -22,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
-  public Employee findById(int id) {
+  public Optional<Employee> findById(int id) {
     return employeeDao.findById(id);
   }
 }
