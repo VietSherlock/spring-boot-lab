@@ -15,14 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @param <T> entity type
  * @param <I> ID type
  */
-public abstract class AbstractJpaBaseDao<T, I extends Serializable> implements BaseDao<T, I> {
+public abstract class AbstractJpaDao<T, I extends Serializable> implements BaseDao<T, I> {
 
   @PersistenceContext protected EntityManager entityManager;
 
   private final Class<T> entityClass;
 
   @Autowired
-  protected AbstractJpaBaseDao(Class<T> entityClass) {
+  protected AbstractJpaDao(Class<T> entityClass) {
     this.entityClass = entityClass;
   }
 
