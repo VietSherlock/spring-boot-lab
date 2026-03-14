@@ -1,26 +1,29 @@
 package com.vietlnn.springbootlab.rest.crud.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Abstract base includes CRUD logic for all entities
+ * Abstract class includes base CRUD implementations for all entities.
+ *
+ * <p>Used EntityManager to communicate with database.
  *
  * @param <T> entity type
  * @param <I> ID type
  */
-public abstract class AbstractJpaDao<T, I extends Serializable> implements Dao<T, I> {
+public abstract class AbstractJpaBaseDao<T, I extends Serializable> implements BaseDao<T, I> {
+
+  @PersistenceContext protected EntityManager entityManager;
 
   private final Class<T> entityClass;
-  protected final EntityManager entityManager;
 
   @Autowired
-  protected AbstractJpaDao(Class<T> entityClass, EntityManager entityManager) {
+  protected AbstractJpaBaseDao(Class<T> entityClass) {
     this.entityClass = entityClass;
-    this.entityManager = entityManager;
   }
 
   @Override

@@ -7,12 +7,12 @@ import java.util.Optional;
 // generic interface with all common CRUD operations
 
 /**
- * Base DAO interface includes CRUD operation for entities
+ * Base DAO interface includes base CRUD operations for all entities
  *
- * @param <T> entity type
+ * @param <T> Entity type
  * @param <I> ID type
  */
-public interface Dao<T, I extends Serializable> {
+public interface BaseDao<T, I extends Serializable> {
 
   // find by entity's id
   Optional<T> findById(I id);
