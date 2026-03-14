@@ -1,7 +1,6 @@
 package com.vietlnn.springbootlab.rest.crud.controller;
 
 import com.vietlnn.springbootlab.rest.crud.dto.EmployeeDto;
-import com.vietlnn.springbootlab.rest.crud.entity.Employee;
 import com.vietlnn.springbootlab.rest.crud.mapper.EmployeeMapper;
 import com.vietlnn.springbootlab.rest.crud.service.EmployeeService;
 import java.util.List;
@@ -28,13 +27,15 @@ public class EmployeeRestController {
   }
 
   @GetMapping("/employees")
-  public List<Employee> getEmployees() {
-    return employeeService.findAll();
+  public ResponseEntity<List<EmployeeDto>> getEmployees() {
+    List<EmployeeDto> employeeDtos = employeeMapper.toDtos(employeeService.findAll());
+    return new ResponseEntity<>(employeeDtos, HttpStatus.OK);
   }
 
   @GetMapping("/employees/{id}")
-  public Employee getEmployeeById(@PathVariable Integer id) {
-    return employeeService.findById(id);
+  public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) {
+    EmployeeDto employeeDto = employeeMapper.toDto(employeeService.findById(id));
+    return new ResponseEntity<>(employeeDto, HttpStatus.OK);
   }
 
   @PostMapping(value = "/employees", consumes = "application/json", produces = "application/json")
