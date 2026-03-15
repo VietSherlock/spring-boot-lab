@@ -1,4 +1,4 @@
-package com.vietlnn.springbootlab.rest.crud.pojo;
+package com.vietlnn.springbootlab.rest.crud.dto;
 
 public class ErrorResponse {
   private int status;

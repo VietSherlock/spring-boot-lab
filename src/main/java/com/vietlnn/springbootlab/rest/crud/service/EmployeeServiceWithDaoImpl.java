@@ -1,34 +1,33 @@
 package com.vietlnn.springbootlab.rest.crud.service;
 
+import com.vietlnn.springbootlab.rest.crud.dao.BaseDao;
 import com.vietlnn.springbootlab.rest.crud.entity.Employee;
 import com.vietlnn.springbootlab.rest.crud.exception.NotFoundException;
-import com.vietlnn.springbootlab.rest.crud.repository.EmployeeRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-/** EmployeeService used Spring Data JPA (JpaRepository) + Hibernate */
-@Primary
+/** EmployeeService used JPA + Hibernate with DAO structural pattern */
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceWithDaoImpl implements EmployeeService {
 
-  private final EmployeeRepository employeeRepository;
+  private final BaseDao<Employee, Integer> employeeDao;
 
   @Autowired
-  public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
-    this.employeeRepository = employeeRepository;
+  public EmployeeServiceWithDaoImpl(BaseDao<Employee, Integer> employeeBaseDao) {
+    this.employeeDao = employeeBaseDao;
   }
 
   @Override
   public List<Employee> findAll() {
-    return employeeRepository.findAll();
+    return employeeDao.findAll();
   }
 
   @Override
   public Optional<Employee> findById(int id) {
-    return employeeRepository.findById(id);
+    return employeeDao.findById(id);
   }
 
   @Override
@@ -43,22 +42,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     return foundEmployee.get();
   }
 
-  /**
-   * Handle both insert and update.
-   *
-   * <p>If id = null -> insert - entityManager.persist().<br>
-   * Otherwise, update - entityManager.merge().
-   *
-   * @param employee Employee to be inserted/updated
-   * @return Employee inserted/updated
-   */
+  // let business layer to handle transaction
+  // -> required in JPA, but no needed in Spring Data JPA
+  // (since JpaRepository provides this functionality)
+  @Transactional
   @Override
   public Employee save(Employee employee) {
-    return employeeRepository.save(employee);
+    return employeeDao.save(employee);
   }
 
+  @Transactional
+  public Employee update(Employee employee) {
+    return employeeDao.update(employee);
+  }
+
+  @Transactional
   @Override
   public void deleteById(int id) {
-    employeeRepository.deleteById(id);
+    employeeDao.deleteById(id);
   }
 }

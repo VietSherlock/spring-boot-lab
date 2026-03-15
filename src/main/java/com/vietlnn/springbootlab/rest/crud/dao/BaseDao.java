@@ -9,6 +9,8 @@ import java.util.Optional;
 /**
  * Base DAO interface includes base CRUD operations for all entities
  *
+ * <p>BaseDao <-> AbstractJpaDao is the same idea with JpaRepository <-> SimpleJpaRepository
+ *
  * @param <T> Entity type
  * @param <I> ID type
  */

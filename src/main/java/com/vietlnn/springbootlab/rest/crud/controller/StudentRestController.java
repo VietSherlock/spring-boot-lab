@@ -1,7 +1,7 @@
 package com.vietlnn.springbootlab.rest.crud.controller;
 
+import com.vietlnn.springbootlab.rest.crud.dto.StudentDto;
 import com.vietlnn.springbootlab.rest.crud.exception.NotFoundException;
-import com.vietlnn.springbootlab.rest.crud.pojo.Student;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,31 +11,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api") // define base uri
 public class StudentRestController {
 
-  private List<Student> students;
+  private List<StudentDto> studentDtos;
 
   // return a list of students
   @GetMapping("/students")
-  public List<Student> getStudents() {
+  public List<StudentDto> getStudents() {
     // Spring uses Jackson to automatically serialize Java POJOs to JSON
     // and deserialize JSON back to POJOs
-    return students;
+    return studentDtos;
   }
 
   // return student with id match path variable value
   // by default path variable name should the same as argument
   @GetMapping("/students/{studentId}")
-  public Student getStudent(@PathVariable int studentId) {
-    if (studentId >= students.size() || studentId < 0) {
+  public StudentDto getStudent(@PathVariable int studentId) {
+    if (studentId >= studentDtos.size() || studentId < 0) {
       throw new NotFoundException("Student id not found - " + studentId);
     }
-    return students.get(studentId);
+    return studentDtos.get(studentId);
   }
 
   // use init method to initialize student data -> store in memory
   @PostConstruct
   public void loadStudent() {
-    students = new ArrayList<>();
-    students.add(new Student("Cristiano", "Ronaldo"));
-    students.add(new Student("Viet", "Le Nguyen Ngoc"));
+    studentDtos = new ArrayList<>();
+    studentDtos.add(new StudentDto("Cristiano", "Ronaldo"));
+    studentDtos.add(new StudentDto("Viet", "Le Nguyen Ngoc"));
   }
 }

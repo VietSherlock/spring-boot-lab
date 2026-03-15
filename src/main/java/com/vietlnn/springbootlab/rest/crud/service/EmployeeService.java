@@ -2,14 +2,26 @@ package com.vietlnn.springbootlab.rest.crud.service;
 
 import com.vietlnn.springbootlab.rest.crud.entity.Employee;
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
 
   List<Employee> findAll();
 
-  Employee findById(int id);
+  Optional<Employee> findById(int id);
+
+  /**
+   * Return an employee with delivered ID if found.<br>
+   * Otherwise, throw NotFoundException.
+   *
+   * @param id Employee's ID.
+   * @return found employee.
+   */
+  Employee lookupById(int id);
 
   Employee save(Employee employee);
+
+  //  Employee update(Employee employee);
 
   void deleteById(int id);
 }

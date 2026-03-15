@@ -8,9 +8,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Abstract class includes base CRUD implementations for all entities.
+ * Abstract class includes base CRUD implementations for all entities.<br>
+ * Used EntityManager to communicate with database.
  *
- * <p>Used EntityManager to communicate with database.
+ * <p>Tech Stack: JPA (not Spring Data JPA) + Hibernate (works behind the scenes)
  *
  * @param <T> entity type
  * @param <I> ID type
@@ -19,6 +20,7 @@ public abstract class AbstractJpaDao<T, I extends Serializable> implements BaseD
 
   @PersistenceContext protected EntityManager entityManager;
 
+  /** Type of entity to load with this DAO. */
   private final Class<T> entityClass;
 
   @Autowired
