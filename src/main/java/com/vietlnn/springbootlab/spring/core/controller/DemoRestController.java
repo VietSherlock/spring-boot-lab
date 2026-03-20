@@ -1,12 +1,14 @@
 package com.vietlnn.springbootlab.spring.core.controller;
 
 import com.vietlnn.springbootlab.spring.core.common.Coach;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Demo")
 public class DemoRestController {
 
   private final Coach coach;

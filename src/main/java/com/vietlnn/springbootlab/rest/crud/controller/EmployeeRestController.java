@@ -6,6 +6,9 @@ import com.vietlnn.springbootlab.rest.crud.exception.BadRequestException;
 import com.vietlnn.springbootlab.rest.crud.exception.NotFoundException;
 import com.vietlnn.springbootlab.rest.crud.mapper.EmployeeMapper;
 import com.vietlnn.springbootlab.rest.crud.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,6 +25,7 @@ import tools.jackson.databind.json.JsonMapper;
  * */
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Employee") // custom Swagger-UI tag
 public class EmployeeRestController {
 
   private final EmployeeService employeeService;
@@ -43,6 +47,9 @@ public class EmployeeRestController {
    * @return All employees if found - 200 OK. Otherwise, 404 - NOT FOUND.
    */
   @GetMapping("/employees")
+  @Operation(summary = "Get all employees")
+  @ApiResponse(responseCode = "200")
+  @ApiResponse(responseCode = "404")
   public ResponseEntity<List<Employee>> getEmployees() {
 
     List<Employee> employees = employeeService.findAll();
@@ -60,6 +67,9 @@ public class EmployeeRestController {
    * @param employeeId ID of an employee.
    * @return An employee matching with input employeeId. Otherwise, return 404 - NOT FOUND.
    */
+  @Operation(
+      summary = "Get employee by ID",
+      description = "Return a single employee based on their ID")
   @GetMapping("/employees/{employeeId}")
   public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer employeeId) {
 

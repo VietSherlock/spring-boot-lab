@@ -7,6 +7,10 @@
 -- not support multi-row insert
 
 -- employee --
-INSERT INTO employee (id, first_name, last_name, email) VALUES (1, 'Cristiano', 'Ronaldo', 'cristiano@example.com');
-INSERT INTO employee (id, first_name, last_name, email) VALUES (2, 'Marcus', 'Aurelius', 'marcus@example.com');
-INSERT INTO employee (id, first_name, last_name, email) VALUES (3, 'Viet', 'Le Nguyen Ngoc', 'vietlnn@example.com');
+INSERT INTO employee (first_name, last_name, email) VALUES ('Cristiano', 'Ronaldo', 'cristiano@example.com');
+INSERT INTO employee (first_name, last_name, email) VALUES ('Marcus', 'Aurelius', 'marcus@example.com');
+INSERT INTO employee (first_name, last_name, email) VALUES ('Viet', 'Le Nguyen Ngoc', 'vietlnn@example.com');
+
+-- product --
+INSERT INTO product (product_no, product_name, price) VALUES ('product_no1', 'Iphone', 1000);
+INSERT INTO product (product_no, product_name, price) VALUES ('product_no2', 'Macbook', 2000);

@@ -2,6 +2,7 @@ package com.vietlnn.springbootlab.rest.crud.controller;
 
 import com.vietlnn.springbootlab.rest.crud.dto.StudentDto;
 import com.vietlnn.springbootlab.rest.crud.exception.NotFoundException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api") // define base uri
+@Tag(name = "Student")
 public class StudentRestController {
 
   private List<StudentDto> studentDtos;
