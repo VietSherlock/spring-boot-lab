@@ -1,8 +1,8 @@
 package com.vietlnn.springbootlab;
 
-import com.vietlnn.springbootlab.hibernate.crud.dao.StudentDAO;
-import com.vietlnn.springbootlab.hibernate.crud.entity.Student;
-import com.vietlnn.springbootlab.hibernate.crud.entity.StudentSearchCriteria;
+import com.vietlnn.springbootlab.springboot.hibernate.jpa.dao.StudentDAO;
+import com.vietlnn.springbootlab.springboot.hibernate.jpa.entity.Student;
+import com.vietlnn.springbootlab.springboot.hibernate.jpa.entity.StudentSearchCriteria;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
