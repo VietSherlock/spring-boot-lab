@@ -22,16 +22,18 @@ public class SpringBootLabApplication {
   // CommandLineRunner is executed after the Spring Beans have been loaded
   public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
     return runner -> {
-      //			createStudent(studentDAO);
-      //			createStudents(studentDAO);
-      //      readStudent(studentDAO);
-      //			queryForStudents(studentDAO);
-      //			readStudentByLastName(studentDAO);
-      //			updateStudent(studentDAO);
-      //			deleteStudentById(studentDAO);
-      //			identifyStudents(studentDAO);
-      //			deleteStudentBySearchCriteria(studentDAO);
-      //			deleteAllStudents(studentDAO);
+      /*
+      		createStudent(studentDAO);
+      		createStudents(studentDAO);
+           readStudent(studentDAO);
+      		queryForStudents(studentDAO);
+      		readStudentByLastName(studentDAO);
+      		updateStudent(studentDAO);
+      		deleteStudentById(studentDAO);
+      		identifyStudents(studentDAO);
+      		deleteStudentBySearchCriteria(studentDAO);
+      		deleteAllStudents(studentDAO);
+      */
     };
   }
 

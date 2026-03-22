@@ -26,10 +26,12 @@ public class DemoRestController {
   }
 
   // Setter Injection
-  //    @Autowired
-  //    public void setCoach(Coach coach){
-  //        this.coach = coach;
-  //    }
+  /*
+     @Autowired
+     public void setCoach(Coach coach){
+         this.coach = coach;
+     }
+  */
 
   @GetMapping("/dailyworkout")
   public String getDailyWorkout() {
