@@ -23,7 +23,7 @@ import tools.jackson.databind.json.JsonMapper;
  * Overall flow:
  * Rest Controller <-> Service <-> DAO <-> Database
  * */
-@RestController
+@RestController // @Controller + @ResponseBody
 @RequestMapping("/api")
 @Tag(name = "Employee") // custom Swagger-UI tag
 public class EmployeeRestController {

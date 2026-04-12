@@ -8,9 +8,32 @@
 <body>
 
 <!--<form th:action="@{/mvc/processForm}" method="GET">-->
-<form th:action="@{/mvc/processFormV2}" method="GET">
+
+<!-- v1
+<form th:action="@{/mvc/processForm}" method="POST"> &lt;!&ndash; URL + HTTP method &ndash;&gt;
     <input type="text" name="studentName" placeholder="What's your name?"/>
     <input type="submit"/>
+</form>
+-->
+
+<!-- v2 -->
+<form th:action="@{/mvc/processForm/v2}" th:object="${student}" method="POST">
+    <!-- *{firstName} = ${student.firstName} -->
+    First name: <input type="text" th:field="*{firstName}"/>
+    <br><br>
+    <!-- when form is loaded, fields are populated by call student.getLastName() -->
+    Last name: <input type="text" th:field="*{lastName}"/>
+    <br><br>
+
+    Country:
+    <select th:field="*{country}">
+        <option th:value="Brazil">Brazil</option>
+        <option th:value="France">France</option>
+        <option th:value="Spain">Spain</option>
+    </select>
+    <br><br>
+
+    <input type="submit" value="Submit"/>
 </form>
 
 </body>

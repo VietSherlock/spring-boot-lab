@@ -1,42 +1,64 @@
 package com.vietlnn.springbootlab.springboot.mvc.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
+import com.vietlnn.springbootlab.springboot.mvc.model.StudentMvc;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequestMapping("/mvc")
 public class HelloWorldController {
 
-  // show initial HTML form
-  @RequestMapping("/showForm")
-  public String showForm() {
+  // define logger using slf4j
+  //  private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+
+  // show HTML form
+  @GetMapping("/showForm/v2")
+  public String showFormV2(Model model) {
+
+    // create a bean/instance of Student to use in the HTML
+    model.addAttribute("student", new StudentMvc());
+
+    // display the form
     return "helloworld-form";
   }
 
   // process the HTML form
-  @RequestMapping("/processForm")
-  public String processForm() {
+  @PostMapping("/processForm/v2")
+  public String processFormV2(@ModelAttribute("student") StudentMvc student) {
+
+    // log the input data
+    log.info(
+        "Student's name: {} {}. He comes from {}",
+        student.getFirstName(),
+        student.getLastName(),
+        student.getCountry());
+
     return "helloworld-process-form";
   }
 
-  // process the HTML form v2
-  @RequestMapping("/processFormV2")
-  public String processFormV2(HttpServletRequest request, Model model) {
+  // show HTML form
+  /*
+  @GetMapping("/showForm/v1")
+  public String showFormV1() {
+    return "helloworld-form";
+  }
+  */
 
-    // read the request parameter from HTML form
-    String studentName = request.getParameter("studentName");
-
-    // upper case the name
-    studentName = studentName.toUpperCase();
+  // process the HTML form
+  /*
+  @PostMapping("/processForm/v1")
+  public String processFormV1(@RequestParam("studentName") String name, Model model) {
 
     // create the message
-    String result = "Yo! " + studentName;
+    String result = "Yo! " + name.toUpperCase();
 
     // add message to Model
     model.addAttribute("message", result);
 
     return "helloworld-process-form";
   }
+  */
 }

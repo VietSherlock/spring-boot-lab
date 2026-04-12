@@ -8,6 +8,12 @@
 
 <body>
 <!--Student name: <span th:text="${param.studentName}"/>-->
-<span th:text="${message}"/>
+<!--<span th:text="${message}"/>-->
+
+<!-- calls student.getFirst/LastName() -->
+The student is confirmed: <span th:text="${student.firstName} + '' + ${student.lastName}"/>
+<br><br>
+He comes from <span th:text="${student.country}"/>.
+
 </body>
 </html>
