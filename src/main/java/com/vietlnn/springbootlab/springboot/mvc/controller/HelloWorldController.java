@@ -1,7 +1,9 @@
 package com.vietlnn.springbootlab.springboot.mvc.controller;
 
 import com.vietlnn.springbootlab.springboot.mvc.model.StudentMvc;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,19 @@ public class HelloWorldController {
   // define logger using slf4j
   //  private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
+  // inject config setting and split string into a list
+  @Value("${student.countries}")
+  private List<String> countries;
+
   // show HTML form
   @GetMapping("/showForm/v2")
   public String showFormV2(Model model) {
 
+    StudentMvc studentMvc = new StudentMvc();
+
     // create a bean/instance of Student to use in the HTML
-    model.addAttribute("student", new StudentMvc());
+    model.addAttribute("student", studentMvc);
+    model.addAttribute("countries", countries);
 
     // display the form
     return "helloworld-form";
@@ -34,7 +43,7 @@ public class HelloWorldController {
         "Student's name: {} {}. He comes from {}",
         student.getFirstName(),
         student.getLastName(),
-        student.getCountry());
+        countries);
 
     return "helloworld-process-form";
   }
